@@ -1,4 +1,3 @@
-# Muudetud failinimi: users.db
 
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -29,7 +28,7 @@ def on_search():
     load_data_from_db(tree, search_query)
 
 def lisa_andmeid():
-    subprocess.Popen(["python", "01.py"], shell=True)
+    subprocess.Popen(["python", "19.py"], shell=True)
 
 def update_record(record_id, entries, window):
     eesnimi = entries["Eesnimi"].get()

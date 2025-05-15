@@ -5,7 +5,7 @@ from tkinter import messagebox
 root = tk.Tk()
 root.title("andmete sisestamine")
 
-# Andmete valideerimine
+
 def validate_data():
     enimi = entries["eesnimi"].get()
     pnimi = entries["perenimi"].get()
@@ -22,7 +22,7 @@ def validate_data():
 def insert_data():
     if validate_data():
         try:
-            connection = sqlite3.connect("users.db")  # ← Muudetud andmebaasi nimi
+            connection = sqlite3.connect("users.db")
             cursor = connection.cursor()
 
             cursor.execute("""
@@ -43,7 +43,7 @@ def insert_data():
         finally:
             connection.close()
 
-# Loo sildid ja sisestusväljad
+
 labels = ["eesnimi", "perenimi", "email", "telefon", "profiilipilt"]  
 entries = {}
 
@@ -53,9 +53,9 @@ for i, label in enumerate(labels):
     entry.grid(row=i, column=1, padx=10, pady=5)
     entries[label] = entry
 
-# Loo nupp andmete sisestamiseks
+
 submit_button = tk.Button(root, text="Sisesta kasutaja", command=insert_data)
 submit_button.grid(row=len(labels), column=0, columnspan=2, pady=20)
 
-# Näita Tkinteri akent
+
 root.mainloop()
