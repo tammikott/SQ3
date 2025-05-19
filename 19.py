@@ -26,7 +26,7 @@ def insert_data():
             cursor = connection.cursor()
 
             cursor.execute("""
-                INSERT INTO users (eesnimi, perenimi, email, tel, profiilipilt)
+                INSERT INTO users3 (eesnimi, perenimi, email, tel, profiilipilt)
                 VALUES (?, ?, ?, ?, ?)
             """, (
                 entries["eesnimi"].get(),

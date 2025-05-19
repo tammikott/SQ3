@@ -11,12 +11,12 @@ def load_data_from_db(tree, search_query=""):
     cursor = conn.cursor()
     if search_query:
         cursor.execute(
-            "SELECT id, eesnimi, perenimi, email, tel, profiilipilt FROM users WHERE eesnimi LIKE ?",
+            "SELECT id, eesnimi, perenimi, email, tel, profiilipilt FROM users3 WHERE eesnimi LIKE ?",
             ("%" + search_query + "%",),
         )
     else:
         cursor.execute(
-            "SELECT id, eesnimi, perenimi, email, tel, profiilipilt FROM users"
+            "SELECT id, eesnimi, perenimi, email, tel, profiilipilt FROM users3"
         )
     rows = cursor.fetchall()
     for row in rows:
@@ -39,7 +39,7 @@ def update_record(record_id, entries, window):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     cursor.execute(
-        "UPDATE users SET eesnimi=?, perenimi=?, email=?, tel=?, profiilipilt=? WHERE id=?",
+        "UPDATE users3 SET eesnimi=?, perenimi=?, email=?, tel=?, profiilipilt=? WHERE id=?",
         (eesnimi, perenimi, email, tel, profiilipilt, record_id),
     )
     conn.commit()
@@ -54,7 +54,7 @@ def open_update_window(record_id):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     cursor.execute(
-        "SELECT eesnimi, perenimi, email, tel, profiilipilt FROM users WHERE id=?",
+        "SELECT eesnimi, perenimi, email, tel, profiilipilt FROM users3 WHERE id=?",
         (record_id,),
     )
     record = cursor.fetchone()
@@ -94,7 +94,7 @@ def on_delete():
             try:
                 conn = sqlite3.connect("users.db")
                 cursor = conn.cursor()
-                cursor.execute("DELETE FROM users WHERE id=?", (record_id,))
+                cursor.execute("DELETE FROM users3 WHERE id=?", (record_id,))
                 conn.commit()
                 conn.close()
                 load_data_from_db(tree)
